@@ -6,6 +6,15 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
+document.addEventListener('click', event => {
+    const type = event.target.dataset.type
+
+    if (type == 'lock'){
+        console.log('loooo')
+    }
+})
+
+
 
 function generateRandomColor(){
     const hexCodes = '0123456789ABCDEF'
