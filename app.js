@@ -39,21 +39,29 @@ function copyToClickboard(text){
 }
 
 
-function setPandomColors(){
-    const colors = []
+function setPandomColors(isInitial){
+    const colors = isInitial ? getColorsFromHash() : []
 
-    cols.forEach((col) => {
+    cols.forEach((col, index) => {
         const isLocked = col.querySelector('i').classList.contains('fa-lock')
         const text = col.querySelector('h2')
         const button = col.querySelector('button')
-        const color = chroma.random()
+        
 
         if(isLocked){
             colors.push(text.textContent)
             return
         }
 
-        colors.push(color)
+        const color = isInitial 
+        ? colors[index]
+            ? colors[index]
+            : chroma.random() 
+        : chroma.random()
+
+        if(!isInitial){
+            colors.push(color)
+        }
 
         text.textContent = color
         col.style.background = color
@@ -78,7 +86,15 @@ function updateColorsHash(colors = []){
     }).join('-')
 }
 
+function getColorsFromHash(){
+    if (document.location.hash.length > 1){
+      return  document.location.hash
+      .substring(1)
+      .split('-')
+      .map(color => '#' + color)
+    }
+    return []
+}
 
 
-
-setPandomColors()
+setPandomColors(true)
