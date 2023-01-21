@@ -11,7 +11,6 @@ buttonget.onclick = toggle
 
 
 
-{
     const cols = document.querySelectorAll(".grandChild");
     
     document.addEventListener('keydown', (event) => {
@@ -111,14 +110,6 @@ buttonget.onclick = toggle
     }
     
     
-    setPandomColors(true)
-    
-    
-    
-    
-    
-    
-    
 
 
-}    
+setPandomColors(true)
